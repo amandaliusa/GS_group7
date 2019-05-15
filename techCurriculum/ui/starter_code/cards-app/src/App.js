@@ -15,13 +15,42 @@
 **/
 
 import React from 'react';
+import Title from './components/title';
+import Card from './components/card';
+import CardForm from './components/cardForm';
 
-function App() {
-  return (
-    <div>
-      <h1>Hello World 2</h1>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cards: [
+        {
+          author: 'John Smith',
+          text: 'React is so cool!'
+        },
+        {
+          author: 'Jane Doe',
+          text: 'I use React for all my projects!'
+        }
+      ]
+    };
+  }
+  
+  render() {
+    const cards = this.state.cards.map((card, index) => (
+      <Card author={card.author}
+        text={card.text}
+        key={index} />
+    ));
+
+    return (
+      <div>
+        <Title />
+        <CardForm />
+        { cards }
+      </div>
+    );
+  }
 }
 
 export default App;
